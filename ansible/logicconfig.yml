@@ -4,9 +4,9 @@
     - name: installing java
       yum: name=openjdk-11-jdk update-cache=yes state=latest
 
-- name: Adding Function User
-  user:
-    name: student
+#- name: Adding Function User
+#  user:
+#    name: student
 
 
 - name: Download & Extract tomcat
