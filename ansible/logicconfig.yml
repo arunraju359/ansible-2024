@@ -25,6 +25,7 @@
       ansible.builtin.shell:
         cmd: ./startup.sh
         chdir: /home/student/apache-tomcat-9.0.89-src/bin
+        mode: '0777'
       become_user: student
 
 
