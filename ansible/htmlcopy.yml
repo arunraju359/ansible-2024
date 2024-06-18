@@ -6,3 +6,12 @@
       template:
         src: /home/ec2-user/ansible/index.html
         dest: /var/www/html
+    - name: Copying the proxy file
+      copy:
+        src: /home/ec2-user/studentapp-ui/ansible/proxy.conf
+        dest: /etc/httpd/conf.d/proxy.conf
+    - name: Download default index file
+      copy:
+        url: /home/ec2-user/studentapp-ui/ansible/index.html
+        dest: /var/www/html/index.html
+
