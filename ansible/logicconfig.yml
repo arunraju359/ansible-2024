@@ -10,7 +10,7 @@
         src: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.100/src/apache-tomcat-8.5.100-src.tar.gz
         dest: /home/student
         remote_src: yes
-      become_user: student
+      become_user: root
     - name: Copy WAR File
       copy:
         src: /home/ec2-user/ansible-2024/target/studentapp-studentapp.war
