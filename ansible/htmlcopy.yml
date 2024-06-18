@@ -2,6 +2,14 @@
   hosts: all
   become: yes
   tasks:
+    - name: Install the latest version of Apache
+      ansible.builtin.package:
+        name: httpd
+        state: present
+    - name: Start service httpd, if not started
+      service:
+        name: httpd
+        state: started
     - name: Copying the html file
       template:
         src: /home/ec2-user/ansible-2024/ansible/index.html
