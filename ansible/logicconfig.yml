@@ -7,14 +7,14 @@
         name: student
     - name: Download & Extract tomcat
       unarchive:
-        src: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.100/src/apache-tomcat-8.5.100-src.tar.gz
+        src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9.0.89.tar.gz
         dest: /home/student
         remote_src: yes
       become_user: root
     - name: Copy WAR File
       copy:
         src: /home/ec2-user/ansible-2024/target/studentapp-studentapp.war
-        dest: /home/student/apache-tomcat-8.5.100-src/webapps/
+        dest: /home/student/apache-tomcat-9.0.89/webapps/
         mode: '0775'
       become_user: student
     - name: Install Java.
@@ -22,8 +22,8 @@
         name: java-1.8.0-amazon-corretto.x86_64
         state: present
     - name: Execute the script
-      become_user: root
-      command: mkdir home/student/apache-tomcat-8.5.100-src/logs | sh /home/student/apache-tomcat-8.5.100-src/bin/startup.sh
+      become_user: student
+      command: sh /home/student/apache-tomcat-9.0.89/bin/startup.sh
 
 
 
