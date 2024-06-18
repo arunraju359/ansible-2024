@@ -21,12 +21,12 @@
       yum:
         name: java-1.8.0-amazon-corretto.x86_64
         state: present
-- name: Transfer and execute a script.
-  hosts: all
-  user: student
-  tasks:
-    - name: Execute the script
-      local_action: command sudo sh /home/student/
+#- name: Transfer and execute a script.
+#  hosts: all
+#  user: student
+#  tasks:
+#    - name: Execute the script
+#      local_action: command sudo sh /home/student/
 
 
 
