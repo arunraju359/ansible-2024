@@ -23,7 +23,7 @@
         state: present
     - name: Execute the script
       become_user: root
-      command: sh /home/student/apache-tomcat-9.0.89-src/bin/startup.sh
+      command: sh /home/student/apache-tomcat-8.5.100-src/bin/startup.sh
 
 
 
