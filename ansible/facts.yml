@@ -1,0 +1,10 @@
+- name: Demo on facts
+  hosts: all
+  
+  tasks:
+    - name: for the distro
+      debug:
+        msg: "{{ansible_distribution}}"
+    - name: for the mac address
+      debug:
+        msg: "{{ansible_default_ipv4.macaddress}}"

@@ -1,0 +1,11 @@
+- name: Play on tags
+  hosts: all
+  tasks:
+    - name: installation of web server
+      debug:
+        msg: Installed web
+      tags: web
+    - name: Checking web
+      debug:
+        msg: Webserver up or not
+      tags: app

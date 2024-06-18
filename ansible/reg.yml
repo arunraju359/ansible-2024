@@ -1,0 +1,9 @@
+- name: Play for Registers
+  hosts: all
+  tasks:
+    - name: Execute Shell
+      shell: uptime
+      register: OUT
+    - name: Printing the OUTPUT
+      debug:
+        msg: "{{OUT}}"

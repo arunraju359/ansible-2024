@@ -1,0 +1,21 @@
+- name: Playbook for HTTPD
+  hosts: all
+  become: yes
+  tasks:
+    - name: Installing Docker WebServer
+      package:
+        name: docker
+        state: present
+    - name: Setup docker user
+      ansible.builtin.user:
+        name: docker
+        groups: "docker"
+        append: true
+    - name: Restart service docker, in all cases
+      ansible.builtin.service:
+        name: docker
+        state: restarted
+    - name: Create a data container
+      docker_container:
+          name: mydata
+          image: busybox

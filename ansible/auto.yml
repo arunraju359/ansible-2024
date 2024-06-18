@@ -1,0 +1,22 @@
+- name: Playbook for HTTPD
+  hosts: all
+  become: yes
+  tasks:
+    - name: Installing HTTPD WebServer
+      package:
+        name: httpd
+        state: present
+
+    - name: copying the html file
+      ansible.builtin.copy:
+        src: /home/ec2-user/ansible
+        dest: /var/www/html
+    
+    - name: Start service httpd, if not started
+      ansible.builtin.service:
+        name: httpd
+        state: started
+    - name: Download file with URL of Apache Tomcat APP server
+      ansible.builtin.get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/src/apache-tomcat-9.0.89-src.tar.gz
+        dest: /home/ec2-user

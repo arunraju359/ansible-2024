@@ -1,0 +1,7 @@
+- name: Demo on file template
+  hosts: all
+  tasks:
+    - name: Copying the proxy file 
+      template:  
+        src: ~/sample
+        dest: ~/sample

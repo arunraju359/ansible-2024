@@ -1,0 +1,9 @@
+- name: Playbook for HTTPD
+  hosts: all
+  become: yes
+  tasks:
+    - name: Installing HTTPD WebServer
+      package:
+        name: httpd
+        state: present
+
