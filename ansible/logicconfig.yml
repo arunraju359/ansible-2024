@@ -19,8 +19,8 @@
       become_user: student
     - name: install java version
       yum:
-          name: java
-          present: yes
+        name: java
+        present: yes
 
 
 
