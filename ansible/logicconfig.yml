@@ -17,10 +17,10 @@
         dest: student/apache-tomcat-9.0.89/webapps/
         mode: '0775'
       become_user: student
-    - name: install java version
+    - name: Install Java.
       yum:
-        name: java
-        present: yes
+        name: java-1.8.0-openjdk
+        state: present
 
 
 
