@@ -1,0 +1,23 @@
+- name: Installing Java
+  package:
+    name: java
+    state: present
+
+- name: Adding Function User
+  user:
+    name: student
+    comment: "Applicaiton User"
+
+- name: Download & Extract tomcat
+  unarchive:
+    src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/src/apache-tomcat-9.0.89-src.tar.gz
+    dest: /home/student
+    remote_src: yes
+  become_user: student
+
+- name: Download WAR File
+  copy:
+    src: /home/student/
+    dest: "{{APPUSERHOME}}/apache-tomcat-{{TOMCAT_VERSION}}/webapps/"
+    mode: '0775'
+  become_user: "{{APPUSER}}"
