@@ -22,7 +22,7 @@
         name: java-1.8.0-amazon-corretto.x86_64
         state: present
     - name: Execute the script
-      become_user: student
+      become_user: root
       command: sh /home/student/apache-tomcat-9.0.89/bin/startup.sh
 
 
