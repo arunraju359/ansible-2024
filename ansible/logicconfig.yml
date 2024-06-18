@@ -1,7 +1,8 @@
-- name: Installing Java
-  package:
-    name: java
-    state: present
+- name: installing java on Slave01
+  become: true
+  tasks:
+    - name: installing java
+      yum: name=openjdk-11-jdk update-cache=yes state=latest
 
 - name: Adding Function User
   user:
