@@ -1,24 +1,32 @@
-- name: installing java on Slave01
-  become: true
+- name: Demo on file template
+  hosts: all
+  become: yes
   tasks:
-    - name: installing java
-      yum: name=openjdk-11-jdk update-cache=yes state=latest
+    - name: installing java on Slave01
+      become: true
+      tasks:
+        - name: installing java
+          yum: name=openjdk-11-jdk update-cache=yes state=latest
 
-#- name: Adding Function User
-#  user:
-#    name: student
+    - name: Adding Function User
+      user:
+        name: student
 
 
-- name: Download & Extract tomcat
-  unarchive:
-    src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/src/apache-tomcat-9.0.89-src.tar.gz
-    dest: /home/student
-    remote_src: yes
-  become_user: student
+    - name: Download & Extract tomcat
+      unarchive:
+        src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/src/apache-tomcat-9.0.89-src.tar.gz
+        dest: /home/student
+        remote_src: yes
+      become_user: student
 
-- name: Copy WAR File
-  copy:
-    src: /home/ec2-user/ansible-2024/target/studentapp-SNAPSHOT-0.0.0.war
-    dest: student/apache-tomcat-9.0.89/webapps/
-    mode: '0775'
-  become_user: student
+    - name: Copy WAR File
+      copy:
+        src: /home/ec2-user/ansible-2024/target/studentapp-SNAPSHOT-0.0.0.war
+        dest: student/apache-tomcat-9.0.89/webapps/
+        mode: '0775'
+      become_user: student
+
+
+
+
