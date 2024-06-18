@@ -17,7 +17,7 @@
 
 - name: Download WAR File
   copy:
-    src: /home/student/
+    src: /home/ec2-user/ansible-2024/target/
     dest: "{{APPUSERHOME}}/apache-tomcat-{{TOMCAT_VERSION}}/webapps/"
     mode: '0775'
   become_user: "{{APPUSER}}"
