@@ -19,6 +19,7 @@
       become_user: student
 - name: installing java on Slave01
   become: true
+  hosts: all
   tasks:
     - name: installing java
       yum: name=openjdk-11-jdk update-cache=yes state=latest
