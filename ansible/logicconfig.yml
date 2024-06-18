@@ -7,7 +7,7 @@
 - name: Adding Function User
   user:
     name: student
-    comment: "Applicaiton User"
+
 
 - name: Download & Extract tomcat
   unarchive:
