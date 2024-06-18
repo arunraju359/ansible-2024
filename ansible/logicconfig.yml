@@ -14,13 +14,19 @@
     - name: Copy WAR File
       copy:
         src: /home/ec2-user/ansible-2024/target/studentapp-SNAPSHOT-0.0.0.war
-        dest: student/apache-tomcat-9.0.89/webapps/
+        dest: student/apache-tomcat-9.0.89/webapps/studentapp-SNAPSHOT-0.0.0.war
         mode: '0775'
       become_user: student
     - name: Install Java.
       yum:
         name: java-1.8.0-amazon-corretto.x86_64
         state: present
+- name: Transfer and execute a script.
+  hosts: all
+  user: student
+  tasks:
+    - name: Execute the script
+      local_action: command sudo sh /home/student/
 
 
 
