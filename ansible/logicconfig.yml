@@ -15,9 +15,9 @@
     remote_src: yes
   become_user: student
 
-- name: Download WAR File
+- name: Copy WAR File
   copy:
-    src: /home/ec2-user/ansible-2024/target/
-    dest: "{{APPUSERHOME}}/apache-tomcat-{{TOMCAT_VERSION}}/webapps/"
+    src: /home/ec2-user/ansible-2024/target/studentapp-SNAPSHOT-0.0.0.war
+    dest: student/apache-tomcat-9.0.89/webapps/
     mode: '0775'
-  become_user: "{{APPUSER}}"
+  become_user: student
