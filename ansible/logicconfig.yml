@@ -21,10 +21,10 @@
       yum:
         name: java-1.8.0-amazon-corretto.x86_64
         state: present
-    - name: Install Apache
-      shell: cd /home/student/apache-tomcat-9.0.89-src/bin | ./startup.sh
-      become: student
+    - name: Execute the script
+      become_user: student
       mode: '0777'
+      command: sh /home/student/apache-tomcat-9.0.89-src/bin/startup.sh
 
 
 
