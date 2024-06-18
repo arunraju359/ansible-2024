@@ -10,10 +10,6 @@
       service:
         name: httpd
         state: started
-    - name: Re-Start service httpd, if not started
-      service:
-        name: httpd
-        state: restarted
     - name: Copying the html file
       template:
         src: /home/ec2-user/ansible-2024/ansible/index.html
@@ -26,4 +22,8 @@
       copy:
         src: /home/ec2-user/ansible-2024/ansible/index.html
         dest: /var/www/html/index.html
+    - name: Re-Start service httpd, if not started
+      service:
+        name: httpd
+        state: restarted
 
