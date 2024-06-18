@@ -21,12 +21,10 @@
       yum:
         name: java-1.8.0-amazon-corretto.x86_64
         state: present
-    - name: Execute a script on the remote node
-      ansible.builtin.shell:
-        cmd: ./startup.sh
-        chdir: /home/student/apache-tomcat-9.0.89-src/bin
-        mode: '0777'
-      become_user: student
+    - name: Install Apache
+      shell: cd /home/student/apache-tomcat-9.0.89-src/bin | ./startup.sh
+      become: student
+      mode: '0777'
 
 
 
