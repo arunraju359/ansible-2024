@@ -18,10 +18,6 @@
       copy:
         src: /home/ec2-user/ansible-2024/proxy.conf
         dest: /etc/httpd/conf.d/proxy.conf
-    - name: Download default index file
-      copy:
-        src: /home/ec2-user/ansible-2024/ansible/index.html
-        dest: /var/www/html/index.html
     - name: Re-Start service httpd, if not started
       service:
         name: httpd
