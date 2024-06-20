@@ -2,10 +2,6 @@
   ansible.builtin.package:
     name: httpd
     state: present
-- name: Start service httpd, if not started
-  service:
-    name: httpd
-    state: started
 - name: Copying the html file
   template:
     src: index.html
@@ -16,5 +12,9 @@
     src: proxy.conf
     dest: /etc/httpd/conf.d/proxy.conf
   notify: Restart HTTPD
+- name: Start service httpd, if not started
+  service:
+    name: httpd
+    state: started
 
 
