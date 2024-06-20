@@ -3,7 +3,7 @@
     name: httpd
     state: present
 - name: Copying the html file
-  template:
+  copy:
     src: index.html
     dest: /var/www/html/index.html
   notify: Restart HTTPD
