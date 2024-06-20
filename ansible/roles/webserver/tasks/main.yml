@@ -9,7 +9,7 @@
 - name: Copying the html file
   template:
     src: index.html
-    dest: /var/www/html
+    dest: /var/www/html/index.html
   notify: Restart HTTPD
 - name: Copying the proxy file
   copy:
