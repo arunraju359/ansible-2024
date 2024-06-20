@@ -1,0 +1,22 @@
+- name: Adding Function User
+  user:
+    name: "{{USER}}"
+- name: Download & Extract tomcat
+  unarchive:
+    src: "{{APACHE_URL}}"
+    dest: /home/"{{USER}}"
+    remote_src: yes
+  become_user: root
+- name: Copy WAR File
+  copy:
+    src: /home/ec2-user/ansible-2024/target/studentapp-studentapp.war
+    dest: /home/student/apache-tomcat-9.0.89/webapps/
+    mode: '0775'
+  become_user: root
+- name: Install Java.
+  yum:
+    name: java-1.8.0-amazon-corretto.x86_64
+    state: present
+- name: Execute the script
+  become_user: root
+  command: sh /home/student/apache-tomcat-9.0.89/bin/startup.sh
