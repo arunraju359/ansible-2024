@@ -4,7 +4,7 @@
 - name: Download & Extract tomcat
   unarchive:
     src: "{{APACHE_URL}}"
-    dest: /home/"{{USER}}"
+    dest: /home/student
     remote_src: yes
   become_user: root
 - name: Copy WAR File
