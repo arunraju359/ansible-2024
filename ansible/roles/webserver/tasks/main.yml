@@ -1,0 +1,20 @@
+- name: Install the latest version of Apache
+  ansible.builtin.package:
+    name: httpd
+    state: present
+- name: Start service httpd, if not started
+  service:
+    name: httpd
+    state: started
+- name: Copying the html file
+  template:
+    src: index.html
+    dest: /var/www/html
+  notify: Restart HTTPD
+- name: Copying the proxy file
+  copy:
+    src: proxy.conf
+    dest: /etc/httpd/conf.d/proxy.conf
+  notify: Restart HTTPD
+
+
