@@ -1,5 +1,5 @@
 - name: Demo on file template
-  hosts: app-server
+  hosts: prod
   become: yes
   tasks:
     - name: Adding Function User
