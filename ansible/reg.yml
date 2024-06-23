@@ -3,7 +3,7 @@
   tasks:
     - name: Execute Shell
       shell: uptime
-      register: OUT
+      register: REG
     - name: Printing the OUTPUT
       debug:
-        msg: "{{OUT}}"
+        msg: "{{REG}}"
