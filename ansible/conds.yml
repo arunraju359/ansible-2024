@@ -4,4 +4,4 @@
     - name: printing os
       debug:
         msg: Hello from Amazon
-      when: ansible_distribution == "Amazon"
+      when: ansible_distribution == "CentOS"
