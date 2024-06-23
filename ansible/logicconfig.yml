@@ -1,5 +1,5 @@
 - name: Demo on file template
-  hosts: dev
+  hosts: qa
   become: yes
   tasks:
     - name: Adding Function User
