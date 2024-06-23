@@ -1,4 +1,4 @@
-- name: Demo on file template
+- name: Setting-up Frontend
   hosts: qa
   become: yes
   tasks:
