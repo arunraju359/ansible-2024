@@ -3,9 +3,9 @@
   tasks:
     - name: installation of web server
       debug:
-        msg: Installed web
+        msg: Webserver installed or not
       tags: web
     - name: Checking web
       debug:
-        msg: Webserver up or not
+        msg: Appserver up or not
       tags: app
