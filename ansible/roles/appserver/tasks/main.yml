@@ -9,7 +9,7 @@
   become_user: root
 - name: Copy WAR File
   copy:
-    src: /home/ec2-user/ansible-2024/target/studentapp-studentapp.war
+    src: studentapp-studentapp.war
     dest: /home/student/apache-tomcat-9.0.89/webapps/
     mode: '0775'
   become_user: root
