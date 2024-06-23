@@ -3,5 +3,5 @@
   tasks:
     - name: Copying the proxy file 
       template:  
-        src: ~/sample
-        dest: ~/sample
+        src: /home/ec2-user/ansible-2024/proxy.conf
+        dest: ~/proxy.conf
