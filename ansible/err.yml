@@ -4,7 +4,7 @@
     - name: for error handling
       shell: ps -f | grep java | grep v grep
       register: OUT
-#      ignore_errors: yes
+      ignore_errors: yes
     - name: starting tomcat
       debug:
         msg: start tomcat
