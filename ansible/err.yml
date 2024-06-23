@@ -8,3 +8,6 @@
     - name: starting tomcat
       debug:
         msg: start tomcat
+    - name: print the out
+      debug:
+        msg: "{{OUT}}"
