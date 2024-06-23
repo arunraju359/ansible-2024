@@ -1,5 +1,5 @@
 - name: Demo on file template
-  hosts: all
+  hosts: dev
   become: yes
   tasks:
     - name: Install the latest version of Apache
