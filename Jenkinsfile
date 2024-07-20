@@ -30,7 +30,10 @@ pipeline {
         }
         stage('Copy war to deploy location'){
             steps{
-                sh ''
+                script {
+                                    def warFile = sh(script: "ls ${env.LOCAL_WAR_PATH}", returnStdout: true).trim()
+                                    sh "cp ${warFile} ${env.DEPLOY_DIR}/${env.WAR_FILE}"
+                }
             }
         }
 
