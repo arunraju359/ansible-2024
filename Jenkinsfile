@@ -7,6 +7,7 @@ pipeline {
         TOMCAT_DIR = "/usr/local/tomcat" // Path to Tomcat installation
         TOMCAT_WEBAPPS_DIR = "${TOMCAT_DIR}/webapps" // Tomcat webapps directory
         WAR_FILE = 'studentapp-studentapp.war' // Name of the WAR file
+        DOCKER_IMAGE_NAME = 'backend'
     }
 
     stages {
@@ -31,24 +32,14 @@ pipeline {
         stage('Copy Artifact') {
             steps {
                 // Find the built WAR file and copy it to the Tomcat webapps directory
-                script {
-                    def warFile = sh(script: "ls ${env.LOCAL_WAR_PATH}", returnStdout: true).trim()
-                    sh "cp ${warFile} ${env.TOMCAT_WEBAPPS_DIR}/${env.WAR_FILE}"
-                }
+                sh 'docker build -t ${env.DOCKER_IMAGE_NAME}:latest'
             }
         }
 
-        stage('Restart Tomcat') {
+        stage('Run Docker container') {
             steps {
                 // Stop Tomcat, wait a bit, and then start Tomcat
-                script {
-                    echo 'Starting Tomcat...'
-                    def startupResult = sh(script: "${env.TOMCAT_DIR}/bin/startup.sh", returnStatus: true)
-                    if (startupResult != 0) {
-                        error "Failed to start Tomcat."
-                    }
-                    echo 'Tomcat started successfully.'
-                }
+                sh 'docker run -d -p 8088:8080 ${env.DOCKER_IMAGE_NAME}:latest'
             }
         }
 
