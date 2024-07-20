@@ -15,7 +15,7 @@ div.ex {
 }
 </style
 <body>
-	<h1>Welcome To CloudCareers : Student Registration Form : v0.0.20 </h1>      
+	<h1>Welcome to Jenkins session </h1>
 	<div class="ex">
 		<form action="registrationController" method="post">
 			<table style="with: 50%">
