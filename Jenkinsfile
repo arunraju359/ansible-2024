@@ -8,10 +8,14 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps {
-                // Checkout the code from version control
-                git 'https://github.com/arunraju359/ansible-2024.git' // Replace with your repository URL
-            }
+                    steps {
+                        // Checkout the code from version control
+                        git(
+                            url: 'https://github.com/arunraju359/ansible-2024.git', // Replace with your repository URL
+                            branch: 'jenkins', // Replace with your branch name
+                            credentialsId: 'creds' // Replace with your credentials ID
+                        )
+                    }
         }
 
         stage('Build') {
