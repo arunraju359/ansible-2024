@@ -42,9 +42,9 @@ pipeline {
                 sh "pkill -f 'java -jar' || true"
 
                 // Run the JAR file
-                sh "
-                    nohup java -jar ${/usr/local/tomcat/bin}/studentapp-studentapp.war > /dev/null 2>&1 &
-                "
+                sh """
+                    nohup java -jar ${SCRIPT_DIR}/studentapp-studentapp.war > /dev/null 2>&1 &
+                """
             }
         }
     }
