@@ -43,8 +43,9 @@ pipeline {
 
                 // Run the JAR file
                 sh """
-                    nohup java -jar ${SCRIPT_DIR}/studentapp-studentapp.war > /dev/null 2>&1 &
+                    ./${SCRIPT_DIR}/startup.sh > /dev/null 2>&1 &
                 """
+
             }
         }
     }
