@@ -2,22 +2,23 @@ pipeline {
     agent any
 
     environment {
-        LOCAL_JAR_PATH = '/Users/arun/.jenkins/workspace/student-app/target/studentapp-studentapp.war' // Path where the JAR file will be built
-        DEPLOY_DIR = '/usr/local/tomcat/webapps' // Directory where the JAR file will be deployed
-        SCRIPT_DIR = '/usr/local/tomcat/bin'
-        SCRIPT_FILE = '/usr/local/tomcat/bin/startup.sh'
+        LOCAL_WAR_PATH = '/Users/arun/.jenkins/workspace/student-app/target/studentapp-studentapp.war' // Path pattern to find the WAR file
+        DEPLOY_DIR = "${HOME}/deploy" // Directory where the WAR file will be deployed
+        TOMCAT_DIR = "/usr/local/tomcat" // Path to Tomcat installation
+        TOMCAT_WEBAPPS_DIR = "${TOMCAT_DIR}/webapps" // Tomcat webapps directory
+        WAR_FILE = 'studentapp-studentapp.war' // Name of the WAR file
     }
 
     stages {
         stage('Checkout') {
-                    steps {
-                        // Checkout the code from version control
-                        git(
-                            url: 'https://github.com/arunraju359/ansible-2024.git', // Replace with your repository URL
-                            branch: 'jenkins', // Replace with your branch name
-                            credentialsId: 'creds' // Replace with your credentials ID
-                        )
-                    }
+            steps {
+                // Checkout the code from version control
+                git(
+                    url: 'https://github.com/arunraju359/ansible-2024.git/', // Replace with your repository URL
+                    branch: 'jenkins', // Replace with your branch name
+                    credentialsId: 'creds' // Replace with your credentials ID
+                )
+            }
         }
 
         stage('Build') {
@@ -29,31 +30,30 @@ pipeline {
 
         stage('Copy Artifact') {
             steps {
-                            // Find the built JAR file and copy it to the deployment directory
-                            script {
-                                def jarFile = sh(script: "ls ${env.LOCAL_JAR_PATH}", returnStdout: true).trim()
-                                sh "cp ${jarFile} ${env.DEPLOY_DIR}/studentapp-studentapp.war"
-                            }
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Kill any running instance of the application (optional)
+                // Find the built WAR file and copy it to the Tomcat webapps directory
                 script {
-                                                def scriptFile = sh(script: "ls ${env.SCRIPT_FILE}", returnStdout: true).trim()
-                                                sh "./${env.SCRIPT_FILE}"
+                    def warFile = sh(script: "ls ${env.LOCAL_WAR_PATH}", returnStdout: true).trim()
+                    sh "cp ${warFile} ${env.TOMCAT_WEBAPPS_DIR}/${env.WAR_FILE}"
                 }
-
-
-
             }
         }
+
+        stage('Restart Tomcat') {
+            steps {
+                // Restart Tomcat to deploy the new WAR file
+                sh """
+                    ${TOMCAT_DIR}/bin/shutdown.sh || true
+                    sleep 10
+                    ${TOMCAT_DIR}/bin/startup.sh
+                """
+            }
+        }
+
+
     }
 
     post {
         always {
-            // Cleanup or notifications if necessary
             echo 'Deployment completed.'
         }
         failure {
