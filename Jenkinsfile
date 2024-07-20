@@ -17,7 +17,7 @@ pipeline {
                 git(
                     url: 'https://github.com/arunraju359/ansible-2024.git/', // Replace with your repository URL
                     branch: 'withdocker', // Replace with your branch name
-                    credentialsId: 'creds' // Replace with your credentials ID
+                    credentialsId: 'credentials' // Replace with your credentials ID
                 )
             }
         }
