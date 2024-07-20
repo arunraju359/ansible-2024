@@ -3,7 +3,8 @@ pipeline {
 
     environment {
         LOCAL_JAR_PATH = '/Users/arun/.jenkins/workspace/student-app/target/studentapp-studentapp.war' // Path where the JAR file will be built
-        DEPLOY_DIR = '/Users/arun/teach/artifacts' // Directory where the JAR file will be deployed
+        DEPLOY_DIR = '/usr/local/tomcat/webapps' // Directory where the JAR file will be deployed
+        START_SCRIPT = '/usr/local/tomcat/bin'
 
     }
 
@@ -42,9 +43,9 @@ pipeline {
                 sh "pkill -f 'java -jar' || true"
 
                 // Run the JAR file
-                sh """
-                    nohup java -jar ${DEPLOY_DIR}/studentapp-studentapp.war > /dev/null 2>&1 &
-                """
+                sh " cd ${env.START_SCRIPT} | ./startup.sh"
+
+
             }
         }
     }
