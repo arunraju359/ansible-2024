@@ -56,7 +56,7 @@ pipeline {
                     echo 'Tomcat started successfully.'
                 }
             }
-
+        }
 
     }
 
