@@ -4,7 +4,7 @@ pipeline {
     environment {
         LOCAL_JAR_PATH = '/Users/arun/.jenkins/workspace/student-app/target/studentapp-studentapp.war' // Path where the JAR file will be built
         DEPLOY_DIR = '/Users/arun/teach/artifacts' // Directory where the JAR file will be deployed
-        JAVA_APP_PORT = 8081
+
     }
 
     stages {
@@ -45,8 +45,6 @@ pipeline {
                 sh """
                     nohup java -jar ${DEPLOY_DIR}/studentapp-studentapp.war > /dev/null 2>&1 &
                 """
-                sh """
-                                    nohup java -jar ${env.DEPLOY_DIR}/studentapp-studentapp.war --server.port=${env.JAVA_APP_PORT}"""
             }
         }
     }
