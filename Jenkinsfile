@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         LOCAL_WAR_PATH = '/Users/arun/.jenkins/workspace/student-app/target/studentapp-studentapp.war' // Path pattern to find the WAR file
-        DEPLOY_DIR = "${HOME}/deploy" // Directory where the WAR file will be deployed
+        DEPLOY_DIR = "/Users/arun/teach/ansible-2024/deploy" // Directory where the WAR file will be deployed
         TOMCAT_DIR = "/usr/local/tomcat" // Path to Tomcat installation
         TOMCAT_WEBAPPS_DIR = "${TOMCAT_DIR}/webapps" // Tomcat webapps directory
         WAR_FILE = 'studentapp-studentapp.war' // Name of the WAR file
