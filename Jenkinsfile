@@ -41,9 +41,11 @@ pipeline {
             steps {
                 // Kill any running instance of the application (optional)
                 sh "pkill -f 'java -jar' || true"
+                dir('${env.START_SCRIPT}'){
+                sh './startup.sh'}
 
                 // Run the JAR file
-                sh " cd ${env.START_SCRIPT} | ./startup.sh"
+
 
 
             }
