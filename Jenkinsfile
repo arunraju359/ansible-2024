@@ -5,6 +5,7 @@ pipeline {
         LOCAL_JAR_PATH = '/Users/arun/.jenkins/workspace/student-app/target/studentapp-studentapp.war' // Path where the JAR file will be built
         DEPLOY_DIR = '/usr/local/tomcat/webapps' // Directory where the JAR file will be deployed
         SCRIPT_DIR = '/usr/local/tomcat/bin'
+        SCRIPT_FILE = '/usr/local/tomcat/bin/startup.sh'
     }
 
     stages {
@@ -31,7 +32,7 @@ pipeline {
                             // Find the built JAR file and copy it to the deployment directory
                             script {
                                 def jarFile = sh(script: "ls ${env.LOCAL_JAR_PATH}", returnStdout: true).trim()
-                                sh "cp ${jarFile} ${env.DEPLOY_DIR}/"
+                                sh "cp ${jarFile} ${env.DEPLOY_DIR}/studentapp-studentapp.war"
                             }
             }
         }
@@ -39,10 +40,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Kill any running instance of the application (optional)
-                sh "pkill -f 'java -jar' || true"
+                script {
+                                                def scriptFile = sh(script: "ls ${env.SCRIPT_FILE}", returnStdout: true).trim()
+                                                sh "./${env.SCRIPT_FILE}"
+                }
 
-                // Run the JAR file
-                sh "'./${SCRIPT_DIR}/startup.sh'"
 
 
             }
