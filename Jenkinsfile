@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        LOCAL_JAR_PATH = '/Users/arun/teach/ansible-2024/target/studentapp-studentapp.war' // Path where the JAR file will be built
+        LOCAL_JAR_PATH = '/Users/arun/.jenkins/workspace/student-app/target/studentapp-studentapp.war' // Path where the JAR file will be built
         DEPLOY_DIR = '/Users/arun/teach/artifacts' // Directory where the JAR file will be deployed
     }
 
@@ -27,11 +27,11 @@ pipeline {
 
         stage('Copy Artifact') {
             steps {
-                // Copy the built JAR file to the deployment directory
-                script {
-                    def jarFile = findFiles(glob: "${LOCAL_JAR_PATH}")[0]
-                    sh "cp ${jarFile} ${DEPLOY_DIR}/"
-                }
+                            // Find the built JAR file and copy it to the deployment directory
+                            script {
+                                def jarFile = sh(script: "ls ${env.LOCAL_JAR_PATH}", returnStdout: true).trim()
+                                sh "cp ${jarFile} ${env.DEPLOY_DIR}/studentapp-studentapp.war"
+                            }
             }
         }
 
