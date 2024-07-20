@@ -31,7 +31,7 @@ pipeline {
                             // Find the built JAR file and copy it to the deployment directory
                             script {
                                 def jarFile = sh(script: "ls ${env.LOCAL_JAR_PATH}", returnStdout: true).trim()
-                                sh "cp ${jarFile} ${env.DEPLOY_DIR}/studentapp-studentapp.war"
+                                sh "cp ${jarFile} ${env.DEPLOY_DIR}/"
                             }
             }
         }
