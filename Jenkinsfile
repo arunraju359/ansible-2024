@@ -28,6 +28,11 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Copy war to deploy location'){
+            steps{
+                sh ''
+            }
+        }
 
         stage('Build container') {
             steps {
