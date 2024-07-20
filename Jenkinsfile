@@ -42,7 +42,7 @@ pipeline {
                 sh "pkill -f 'java -jar' || true"
 
                 // Run the JAR file
-                sh "./${SCRIPT_DIR}/startup.sh"
+                sh "'./${SCRIPT_DIR}/startup.sh'"
 
 
             }
