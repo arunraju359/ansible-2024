@@ -42,12 +42,6 @@ pipeline {
             steps {
                 // Stop Tomcat, wait a bit, and then start Tomcat
                 script {
-                    echo 'Stopping Tomcat...'
-                    def shutdownResult = sh(script: "${env.TOMCAT_DIR}/bin/shutdown.sh", returnStatus: true)
-                    if (shutdownResult != 0) {
-                        echo "Tomcat was not running or shutdown encountered an issue."
-                    }
-                    sleep 20 // Wait longer for Tomcat to shut down properly
                     echo 'Starting Tomcat...'
                     def startupResult = sh(script: "${env.TOMCAT_DIR}/bin/startup.sh", returnStatus: true)
                     if (startupResult != 0) {
