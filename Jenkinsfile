@@ -46,8 +46,10 @@ pipeline {
 
         stage('Run Docker container') {
             steps {
+                dir('/Users/arun/.jenkins/workspace/student-app'){
                 // Stop Tomcat, wait a bit, and then start Tomcat
                 sh 'docker run -d -p 8088:8080 ${env.DOCKER_IMAGE_NAME}:latest'
+                }
             }
         }
 
